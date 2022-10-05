@@ -10,4 +10,5 @@
   
 2022-10-05
 * Added the MapInstance class to help organize metadata
+* Made map_data.py file to collection functions loading in datasets
   * Examples in notebook 01_Initial_Loading_Examples

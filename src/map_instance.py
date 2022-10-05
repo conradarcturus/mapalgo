@@ -23,8 +23,10 @@ class MapInstance():
         self.addToAttributes(attributes)
         self.setData(data)
         
-        
     def setData(self, data):
+        if(len(data.shape) > 1):
+            # Make all data 1D in storage to keep it standard
+            data = data.flatten()
         self.data = data
         return self
     
@@ -41,11 +43,13 @@ class MapInstance():
     def getNCols(self):
         return self.n_cols
     
+    # Gets the 1D version of the data
     def getDataFlat(self):
-        return self.data;
+        return self.data
     
+    # Gets the 2D version of the data
     def getDataMatrix(self):
-        return self.reshape([self.n_rows, self.n_cols])
+        return self.data.reshape([self.n_rows, self.n_cols])
     
     def getDims(self):
         return [self.n_rows, self.n_cols]
