@@ -7,3 +7,7 @@
 2022-09-29
 * Added image displaying functions, copied from older environment
   * Examples in notebook 01_Initial_Loading_Examples
+  
+2022-10-05
+* Added the MapInstance class to help organize metadata
+  * Examples in notebook 01_Initial_Loading_Examples
