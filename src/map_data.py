@@ -14,4 +14,32 @@ def loadBaseMap(dataset, minutes_per_node, image_folder):
     }
     [n_rows, n_cols] = data_2d.shape
     return MapInstance(attributes, n_rows, n_cols, data_2d.flatten())
+
+def loadRegionMap(region, dataset, minutes_per_node, image_folder):
+    world_map = loadBaseMap(dataset, minutes_per_node, image_folder)
+    region_bounds = _loadRegionBounds(region, minutes_per_node)
+    return world_map.newChildRegionInstance(region, region_bounds)
     
+def _loadAllRegionsBounds():
+    data_file = open('data/region_coordinates.csv', 'rb')
+    data_regions = np.loadtxt(
+        data_file, 
+        delimiter=', ',
+        dtype={'names': ('continent', 'region_name', 'ymin', 'ymax', 'xmin', 'xmax', 'area'),
+             'formats': ('S10', 'S16', 'i', 'i', 'i', 'i', 'i')},
+        skiprows=1,
+    )
+    data_file.close()
+
+    regions_bounds = {}
+    for continent, region_name, ymin, ymax, xmin, xmax, _area in data_regions:
+        regions_bounds[region_name.decode().strip()] = {'ymin': ymin, 'ymax': ymax, 'xmin': xmin, 'xmax': xmax}
+    return regions_bounds
+
+def _loadRegionBounds(region_name, minutes_per_node=5):
+    regions_bounds = _loadAllRegionsBounds()
+    
+    region_bounds = regions_bounds[region_name]
+    for key in region_bounds:
+        region_bounds[key] //= minutes_per_node
+    return region_bounds

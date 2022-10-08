@@ -59,9 +59,15 @@ class MapInstance():
         attributes = _mergeAttributes(self.attributes, new_attributes)
         return MapInstance(attributes, self.n_rows, self.n_cols, new_data)
     
+    # Copies the old data, zoomed in on a smaller section
+    # @param bounds should be in the same resolution as the data
+    def newChildRegionInstance(self, region_name, bounds):
+        new_data = self.getDataMatrix()[bounds['ymin']:bounds['ymax'],bounds['xmin']:bounds['xmax']]
+        attributes = _mergeAttributes(self.attributes, {'region': region_name})
+        return MapInstance(attributes, bounds['ymax']-bounds['ymin'], bounds['xmax']-bounds['xmin'], new_data)
         
 def _mergeAttributes(old_attributes, new_attributes):
     attributes = old_attributes.copy()
     for key in new_attributes:
         attributes[key] = new_attributes[key]
-    return attributes;
+    return attributes
