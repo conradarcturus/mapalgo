@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as img
+from matplotlib.colors import LinearSegmentedColormap
 
 class RasterImage():
     ## baseMapInstance should contain all of the basic image of the map, eg. number of rows and cols
@@ -94,6 +95,8 @@ class RasterImage():
                 values = plt.cm.RdYlBu(values)
             elif (colormap == 'qual'): # qualitiative
                 values = plt.cm.Paired(values)
+            elif (colormap == 'naturalish'):
+                values = _applyNaturalishColormap(values)
             else: # rainbow
                 values = plt.cm.rainbow(values)
             value_format = 'nodes_color'
@@ -159,3 +162,28 @@ class RasterImage():
         # So output of self doesn't appear if you don't want it
         return
     
+# Get natural coloring
+land_colors = ['beige', 'yellowgreen', 'forestgreen', 'darkolivegreen', 'slategrey', 'snow']
+sea_colors = ['deepskyblue', 'mediumblue', 'darkblue']
+colormap_land = LinearSegmentedColormap.from_list("colormap_land", land_colors)
+colormap_sea = LinearSegmentedColormap.from_list("colormap_sea", sea_colors)
+
+def _applyNaturalishColormap(data_flat, normalize=True):
+    # First lets divide the data into land and sea
+    land = data_flat.astype(float) # makes sure it is float typed, & makes a new copy of the matrix
+    sea = -data_flat.astype(float) # makes sure it is float typed, & makes a new copy of the matrix
+    land[land < 0] = 0
+    sea[sea < 0] = 0
+    
+    # Divide by the maximum if we want to normalize it
+    if(normalize):
+        land /= np.max(land)
+        sea /= np.max(sea)
+    
+    # Apply the colors. This should give us an n*4 matrix
+    land = colormap_land(land)
+    sea = colormap_sea(sea)
+        
+    # Combine
+    land[data_flat < 0, :] = sea[data_flat < 0, :]
+    return land

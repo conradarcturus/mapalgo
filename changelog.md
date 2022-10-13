@@ -19,3 +19,4 @@ Examples in notebook `01_Initial_Loading_Examples.ipynb`
 
 2022-10-13
 * Added hillshade algorithm & file for similar transforms, `map_transforms`.
+* Added naturalish colormap option to images
