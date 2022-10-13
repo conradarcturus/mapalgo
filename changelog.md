@@ -20,3 +20,11 @@ Examples in notebook `01_Initial_Loading_Examples.ipynb`
 2022-10-13
 * Added hillshade algorithm & file for similar transforms, `map_transforms`.
 * Added naturalish colormap option to images
+
+### Phase 2, Algorithms to determine peaks, mountain ranges ###
+
+Examples in notebook `02_Mountain_Ranges.ipynb`
+
+2022-10-13
+* Started new notebook with functions to get information from the map (node index, map edge, highest neighbor)
+* Function to show the local mountain peaks each node points up to

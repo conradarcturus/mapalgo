@@ -37,15 +37,18 @@ class MapInstance():
     def getAttribute(self, key):
         return self.attributes[key]
     
-    def getNRows(self):
+    def getNumRows(self):
         return self.n_rows
     
-    def getNCols(self):
+    def getNumCols(self):
         return self.n_cols
+    
+    def getNumNodes(self):
+        return self.n_nodes
     
     # Gets the 1D version of the data
     def getDataFlat(self):
-        return self.data
+        return self.data.copy()
     
     # Gets the 2D version of the data
     def getDataMatrix(self):

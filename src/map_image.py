@@ -15,8 +15,8 @@ class RasterImage():
         self.region = baseMapInstance.getAttribute('region');
         
         # Dimension
-        self.n_rows = baseMapInstance.getNRows()
-        self.n_cols = baseMapInstance.getNCols()
+        self.n_rows = baseMapInstance.getNumRows()
+        self.n_cols = baseMapInstance.getNumCols()
         self.n_nodes = self.n_rows * self.n_cols
         self.n_neighbors = n_neighbors if n_neighbors else 0
         
