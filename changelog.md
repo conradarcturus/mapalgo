@@ -8,11 +8,14 @@ Examples in notebook `01_Initial_Loading_Examples.ipynb`
 * Added initial data files & an inital notebook loading the data.
 
 2022-09-29
-* Added image displaying functions, copied from older environment
+* Added image displaying functions, copied from older environment.
   
 2022-10-05
-* Added the MapInstance class to help organize metadata
-* Made `map_data.py` file to collection functions loading in datasets
+* Added the MapInstance class to help organize metadata.
+* Made `map_data.py` file to collection functions loading in datasets.
 
 2022-10-11
-* Added regional data file `data/region_coordinates.csv` and accessor to regional data to `map_data.py`
+* Added regional data file `data/region_coordinates.csv` and accessor to regional data to `map_data.py`.
+
+2022-10-13
+* Added hillshade algorithm & file for similar transforms, `map_transforms`.

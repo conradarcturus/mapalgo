@@ -4,7 +4,7 @@ This library contains many python methods to process maps for interesting analys
 ## Images ##
 
 ### World Elevation ###
-![world elevation](img/01/tbi_5min_world_elevation.png)
+![world elevation](img/01/tbi_5min_world_elevation-hillshade.png)
 
 ### Pacific Northwest Elevation ###
-![pacific northwest elevation](img/01/tbi_1min_cascadia_elevation.png)
+![pacific northwest elevation](img/01/tbi_1min_cascadia_elevation-hillshade.png)
