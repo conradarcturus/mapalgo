@@ -28,3 +28,6 @@ Examples in notebook `02_Mountain_Ranges.ipynb`
 2022-10-13
 * Started new notebook with functions to get information from the map (node index, map edge, highest neighbor)
 * Function to show the local mountain peaks each node points up to
+
+2022-10-14
+* Added border functions to make better images of regions

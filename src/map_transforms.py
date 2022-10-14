@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 ##
 # This computes the hillshade of an elevation map. The hillshade algorithm
@@ -48,7 +49,9 @@ def getNodesOnMapEdge(map_instance):
 # This function determines which neighboring node is the highest
 # Nodes with a value -1 have no higher neighbor.
 #
-def getHighestNeighbor(map_instance, radius=1, wrap=False):
+# Default radius is 1.5, allowing for orthogonally and diagonally adjacent nodes
+#
+def getHighestNeighbor(map_instance, radius=1.5, wrap=False):
     nodes_highest_neighbor_value_so_far = map_instance.getDataFlat()
     nodes_highest_neighbor_index = np.full(map_instance.getNumNodes(), -1)
     gridded_node_index = getNodesIndex(map_instance).reshape(map_instance.getDims())
@@ -57,9 +60,11 @@ def getHighestNeighbor(map_instance, radius=1, wrap=False):
     if (not wrap):
         nodes_on_map_edge = getNodesOnMapEdge(map_instance)
 
-    for x in range(-radius, radius+1):
-        for y in range(-radius, radius+1):
-            if (x + y == 0):
+    rounded_radius = math.floor(radius)
+    for x in range(-rounded_radius, rounded_radius+1):
+        for y in range(-rounded_radius, rounded_radius+1):
+            # Only compute for neighboring edges under the radius
+            if((x == 0 and y == 0) or (x**2+y**2)**0.5 > radius):
                 continue
                 
             # For neighboring nodes, find out if they are higher than the node
@@ -117,4 +122,39 @@ def getLocalPeaks(map_highest_neighbor_index, verbose=False):
     return map_highest_neighbor_index.newChildInstance(
         {'values': 'local_peak'}, 
         nodes_local_peak
+    )
+
+##
+# Determine which nodes have different values from their neighbors
+#
+# Usually, adjacent (radius=1) is sufficient
+#
+def getBorder(map_instance, radius=1, wrap=False):
+    nodes_value = map_instance.getDataFlat()
+    gridded_value = map_instance.getDataMatrix()
+    nodes_border = np.full(map_instance.getNumNodes(), False)
+    nodes_on_map_edge = None
+    if (not wrap):
+        nodes_on_map_edge = getNodesOnMapEdge(map_instance) 
+    
+    rounded_radius = math.floor(radius)
+    for x in range(-rounded_radius, rounded_radius+1):
+        for y in range(-rounded_radius, rounded_radius+1):
+            # Only compute for neighboring edges under the radius
+            if((x == 0 and y == 0) or (x**2+y**2)**0.5 > radius):
+                continue
+            
+            nodes_neighbor_value = np.roll(np.roll(gridded_value, x, 0), y, 1).flatten()
+            nodes_neighbor_is_different = nodes_neighbor_value != nodes_value 
+
+            # Remove higher node designations for neighbors that are on the edge
+            if (not wrap):
+                nodes_neighbor_on_map_edge = np.roll(np.roll(nodes_on_map_edge.reshape(map_instance.getDims()), x, 0), y, 1).flatten()
+                nodes_neighbor_is_different[nodes_neighbor_on_map_edge] = False
+            
+            nodes_border[nodes_neighbor_is_different] = True
+            
+    return map_instance.newChildInstance(
+        {'mods': 'border'},
+        nodes_border,
     )

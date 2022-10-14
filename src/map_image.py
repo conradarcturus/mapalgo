@@ -97,6 +97,8 @@ class RasterImage():
                 values = plt.cm.Paired(values)
             elif (colormap == 'naturalish'):
                 values = _applyNaturalishColormap(values)
+            elif (colormap == 'hashed'):
+                values = _applyHashedColormap(values)
             else: # rainbow
                 values = plt.cm.rainbow(values)
             value_format = 'nodes_color'
@@ -187,3 +189,13 @@ def _applyNaturalishColormap(data_flat, normalize=True):
     # Combine
     land[data_flat < 0, :] = sea[data_flat < 0, :]
     return land
+
+
+def _applyHashedColormap(nodes_value):
+    nodes_color = np.zeros([len(nodes_value), 4])
+    nodes_value = np.expand_dims(nodes_value, 0)
+    nodes_color[:, 0] = (nodes_value * 1000 * 221 % 255) / 255.0
+    nodes_color[:, 1] = (nodes_value * 1000 * 251 % 255) / 255.0
+    nodes_color[:, 2] = (nodes_value * 1000 * 373 % 255) / 255.0
+    nodes_color[:, 3] = 1.0
+    return nodes_color
