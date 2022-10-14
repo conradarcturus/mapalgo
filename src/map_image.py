@@ -135,7 +135,13 @@ class RasterImage():
     def addToFilename(self, name=''):
         if(name is not None and name != ''):
             self.layer_names.append(name)
-        return self    
+        return self
+    
+    # Some complex images may have too many layers than its useful to add to the filename
+    # This function can be used to override them to simplify it
+    def overrideLayerNames(self, layer_names):
+        self.layer_names = layer_names
+        return self
     
     def getFilename(self):
         n_nei = 'nei' + str(self.n_neighbors) if self.n_neighbors > 0 else ''

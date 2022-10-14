@@ -31,3 +31,6 @@ Examples in notebook `02_Mountain_Ranges.ipynb`
 
 2022-10-14
 * Added border functions to make better images of regions
+* Added more low-resolution datasets, generated mountain ranges & basins for them.
+   * Also ran the mountain/basin algorithm on populations but the data is too sparse right now for it to be really
+     meaningful until we smooth it out or merge "mountains" aka cities.

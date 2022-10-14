@@ -3,16 +3,8 @@ This library contains many python methods to process maps for interesting analys
 
 ## Images ##
 
-### World Elevation ###
-![world elevation](img/01/tbi_5min_world_elevation-hillshade.png)
-
-### Pacific Northwest Elevation ###
-![pacific northwest elevation](img/01/tbi_1min_cascadia_elevation-hillshade.png)
-
-### Hawaii ###
-
-Elevation
-![hawaii elevation](img/02/tbi_1min_hawaii_elevation-hillshade.png)
-
-Mountains
-![hawaii mountains](img/02/tbi_1min_hawaii_local_peak-local_peak_border-brightseas-hillshade.png)
+| Dataset | Elevation | Mountains |
+| -- | -- | -- |
+| Hawaii (1 minute resolution) | ![hawaii elevation](img/02/tbi_1min_hawaii_elevation.png) | ![hawaii mountains](img/02/tbi_1min_hawaii_mountains.png) |
+| Pacific Northwest (1 minute resolution) | ![cascadia elevation](img/02/tbi_1min_cascadia_elevation.png) | ![cascadia mountains](img/02/tbi_1min_cascadia_mountains.png) |
+| World (10 minute resolution) | ![world elevation](img/02/tbi_10min_world_elevation.png) | ![world mountains](img/02/tbi_10min_world_mountains.png) |

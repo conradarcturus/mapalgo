@@ -1,17 +1,28 @@
 import numpy as np
 from src.map_instance import *
 
+allowed_minute_input = [1, 5, 10, 60]
+allowed_dataset_input = ['TBI', 'POP', 'PSL']
+
 def loadBaseMap(dataset, minutes_per_node, image_folder):
+    # Validate Input
+    assert (dataset in allowed_dataset_input), 'Dataset must be one of: ' + str(allowed_dataset_input)
+    assert (minutes_per_node in allowed_minute_input), 'Number of minutes must be one of: ' + str(allowed_minute_input)
+    
+    # Load Data
     data_file = open('data/{}_world_{}min.npz'.format(dataset, minutes_per_node), 'rb')
     data_2d = np.load(data_file)['data_matrix']
     data_file.close()
-    
+
+    # Set attributes for the map data
     attributes = {
         'minutes_per_node': minutes_per_node,
         'dataset': dataset.lower(),
         'image_folder': image_folder,
         'region': 'world',
     }
+
+    # Build the map instance that keeps metadata
     [n_rows, n_cols] = data_2d.shape
     return MapInstance(attributes, n_rows, n_cols, data_2d.flatten())
 

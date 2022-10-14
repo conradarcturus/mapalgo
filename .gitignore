@@ -127,6 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-data/POP_world_1min.npz
-data/TBI_world_1min.npz
+data/*_world_1min.npz
 .DS_Store
