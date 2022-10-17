@@ -158,3 +158,63 @@ def getBorder(map_instance, radius=1, wrap=False):
         {'mods': 'border'},
         nodes_border,
     )
+
+def getNodesNeighbors(n_rows, n_cols, n_nei, wrap=False):
+    rc2index = lambda r, c: int(r * n_cols + c)
+    index2rc = lambda index: [int(index / n_cols), int(index % n_cols)]
+    nodes_neighbors = np.zeros([n_rows*n_cols, n_nei], dtype=int)
+    for row in np.arange(n_rows):
+        for col in np.arange(n_cols):
+            index = rc2index(row, col)
+            nodes_neighbors[index, 0] = rc2index(row - 1, col) if row > 0 else -1
+            nodes_neighbors[index, 1] = rc2index(row + 1, col) if row < n_rows-1 else -1
+            nodes_neighbors[index, 2] = rc2index(row, col - 1) if col > 0 else -1
+            nodes_neighbors[index, 3] = rc2index(row, col + 1) if col < n_cols-1 else -1
+            if(n_nei >= 8):
+                nodes_neighbors[index, 4] = rc2index(row - 1, col - 1) if row > 0   and col > 0   else -1
+                nodes_neighbors[index, 5] = rc2index(row + 1, col - 1) if row < n_rows-1 and col > 0   else -1
+                nodes_neighbors[index, 6] = rc2index(row - 1, col + 1) if row > 0   and col < n_cols-1 else -1
+                nodes_neighbors[index, 7] = rc2index(row + 1, col + 1) if row < n_rows-1 and col < n_cols-1 else -1
+            if(n_nei >= 20):
+                nodes_neighbors[index,  8] = rc2index(row - 2, col + 1) if row >= 0+2 and col <  n_cols-1 else -1
+                nodes_neighbors[index,  9] = rc2index(row - 2, col + 0) if row >= 0+2 and col >= 0+0 else -1
+                nodes_neighbors[index, 10] = rc2index(row - 2, col - 1) if row >= 0+2 and col >= 0+1 else -1
+                nodes_neighbors[index, 11] = rc2index(row - 1, col + 2) if row >= 0+1 and col <  n_cols-2 else -1
+                nodes_neighbors[index, 12] = rc2index(row - 1, col - 2) if row >= 0+1 and col >= 0+2 else -1
+                nodes_neighbors[index, 13] = rc2index(row + 0, col + 2) if row >= 0+0 and col <  n_cols-2 else -1
+                nodes_neighbors[index, 14] = rc2index(row + 0, col - 2) if row >= 0+0 and col >= 0+2 else -1
+                nodes_neighbors[index, 15] = rc2index(row + 1, col + 2) if row <  n_rows-1 and col <  n_cols-2 else -1
+                nodes_neighbors[index, 16] = rc2index(row + 1, col - 2) if row <  n_rows-1 and col >= 0+2 else -1
+                nodes_neighbors[index, 17] = rc2index(row + 2, col + 1) if row <  n_rows-2 and col <  n_cols-1 else -1
+                nodes_neighbors[index, 18] = rc2index(row + 2, col + 0) if row <  n_rows-2 and col >= 0+0 else -1
+                nodes_neighbors[index, 19] = rc2index(row + 2, col - 1) if row <  n_rows-2 and col >= 0+1 else -1
+
+            # Go over the edge of the world if appropriate
+            if(wrap):
+                if(col == 0):
+                    nodes_neighbors[index, 2] = rc2index(row, n_cols-1)
+                if(col == n_cols-1):
+                    nodes_neighbors[index, 3] = rc2index(row,   0)
+                if(n_nei >= 8):
+                    if(col == 0):
+                        nodes_neighbors[index, 4] = rc2index(row - 1, n_cols-1) if row > 0   else -1
+                        nodes_neighbors[index, 5] = rc2index(row + 1, n_cols-1) if row < n_rows-1 else -1
+                    if(col == n_cols-1):
+                        nodes_neighbors[index, 6] = rc2index(row - 1,   0) if row > 0   else -1
+                        nodes_neighbors[index, 7] = rc2index(row + 1,   0) if row < n_rows-1 else -1
+                if(n_nei >= 20):
+                    if(col == 0):
+                        nodes_neighbors[index, 10] = rc2index(row - 2, col + n_cols-1) if row >= 0+2 else -1
+                        nodes_neighbors[index, 19] = rc2index(row + 2, col + n_cols-1) if row <  n_rows-2 else -1
+                    if(col <= 1):
+                        nodes_neighbors[index, 12] = rc2index(row - 1, col + n_cols-2) if row >= 0+1 else -1
+                        nodes_neighbors[index, 14] = rc2index(row + 0, col + n_cols-2) if row >= 0+0 else -1
+                        nodes_neighbors[index, 16] = rc2index(row + 1, col + n_cols-2) if row <  n_rows-1 else -1
+                    if(col >= n_cols-2):
+                        nodes_neighbors[index, 11] = rc2index(row - 1, col - n_cols+2) if row >= 0+1 else -1
+                        nodes_neighbors[index, 13] = rc2index(row + 0, col - n_cols+2) if row >= 0+0 else -1
+                        nodes_neighbors[index, 15] = rc2index(row + 1, col - n_cols+2) if row <  n_rows-1 else -1
+                    if(col == n_cols-1):
+                        nodes_neighbors[index,  8] = rc2index(row - 2, col - n_cols+1) if row >= 0+2 else -1
+                        nodes_neighbors[index, 17] = rc2index(row + 2, col - n_cols+1) if row <  n_rows-2 else -1
+    return nodes_neighbors

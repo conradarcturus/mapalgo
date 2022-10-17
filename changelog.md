@@ -23,7 +23,7 @@ Examples in notebook `01_Initial_Loading_Examples.ipynb`
 
 ### Phase 2, Algorithms to determine peaks, mountain ranges ###
 
-Examples in notebook `02_Mountain_Ranges.ipynb`
+Examples in notebook `02_Mountains.ipynb`
 
 2022-10-13
 * Started new notebook with functions to get information from the map (node index, map edge, highest neighbor)
@@ -34,3 +34,12 @@ Examples in notebook `02_Mountain_Ranges.ipynb`
 * Added more low-resolution datasets, generated mountain ranges & basins for them.
    * Also ran the mountain/basin algorithm on populations but the data is too sparse right now for it to be really
      meaningful until we smooth it out or merge "mountains" aka cities.
+     
+Examples in notebook `03_Mountain_Ranges.ipynb`
+
+2022-10-17
+* Early attempts in determining mountain ranges -- need more analysis though before things look right, and cutting the commit with early results
+
+Planned work
+* Visualize ridge lines
+* Improve mountain range algo2 to visualize better what it looks like without merge everything
