@@ -40,6 +40,8 @@ Examples in notebook `03_Mountain_Ranges.ipynb`
 2022-10-17
 * Early attempts in determining mountain ranges -- need more analysis though before things look right, and cutting the commit with early results
 
+2023-05-18
+* Exploring different approaches to visualize ridge lines
+
 Planned work
-* Visualize ridge lines
 * Improve mountain range algo2 to visualize better what it looks like without merge everything
