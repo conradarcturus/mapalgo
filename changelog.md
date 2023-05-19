@@ -41,7 +41,10 @@ Examples in notebook `03_Mountain_Ranges.ipynb`
 * Early attempts in determining mountain ranges -- need more analysis though before things look right, and cutting the commit with early results
 
 2023-05-18
-* Exploring different approaches to visualize ridge lines
+* Explored different approaches to visualize ridge lines
+
+2023-05-19
+* Drew some mountain groupings by looking at stopping merges along ridges that connect peaks where 1 is overwater and 1 is underwater.
 
 Planned work
-* Improve mountain range algo2 to visualize better what it looks like without merge everything
+* Improve mountain range algo2 to visualize better what it looks like without merging everything
