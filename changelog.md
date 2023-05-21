@@ -46,5 +46,12 @@ Examples in notebook `03_Mountain_Ranges.ipynb`
 2023-05-19
 * Drew some mountain groupings by looking at stopping merges along ridges that connect peaks where 1 is overwater and 1 is underwater.
 
+2023-05-21
+* Refactored the mountain range experimental code
+  * Collected the re-used maps (elevation, mountains, ...) into an object collection
+  * Added 'params' object to make it easier to recall the number of nodes and organize the params a bit cleaner.
+  * Organized most blocks of code to use function definitions -- this makes it easier to manage locale v global variables to prevent using too much memory
+  * Added a few more descriptive statistics. In hindsight I should do this more so I make better algorithmic choices earlier
+
 Planned work
 * Improve mountain range algo2 to visualize better what it looks like without merging everything
