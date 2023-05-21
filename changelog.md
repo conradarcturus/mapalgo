@@ -52,6 +52,7 @@ Examples in notebook `03_Mountain_Ranges.ipynb`
   * Added 'params' object to make it easier to recall the number of nodes and organize the params a bit cleaner.
   * Organized most blocks of code to use function definitions -- this makes it easier to manage locale v global variables to prevent using too much memory
   * Added a few more descriptive statistics. In hindsight I should do this more so I make better algorithmic choices earlier
+* Generated more iterations on the mountain groupings on Hawaii and found the perfect combination of merging seamounts & mountains for at least this region
 
 Planned work
 * Improve mountain range algo2 to visualize better what it looks like without merging everything
