@@ -54,5 +54,21 @@ Examples in notebook `03_Mountain_Ranges.ipynb`
   * Added a few more descriptive statistics. In hindsight I should do this more so I make better algorithmic choices earlier
 * Generated more iterations on the mountain groupings on Hawaii and found the perfect combination of merging seamounts & mountains for at least this region
 
+2023-05-26
+* Adapted the mountain range code for water sheds
+* And while I was at it, generated the images for lots of other regions
+
+2023-06-04
+* Fixed problem with some local files not being changed from the last update (the .mds).
+* Re-generated all of the images, removing the locale borders (since tbh it was too much noise on the large images).
+* Updated local python libraries, fixed a few incompatible code issues.
+
 Planned work
-* Improve mountain range algo2 to visualize better what it looks like without merging everything
+* Iterate on different group algorithms
+   * Splitting at different thresholds
+   * Having "plains" or plateaus treated differently
+   * Try to capture "interrupted" mountain chains that we see a visual pattern to even though in the fine detail they are separated (eg. a the Columbia river cutting the Cascades in two)
+* Try different ways to visualize 
+   * Rivers with color & width corresponding to flow down it
+* Try the algorithms on population data and see urban catchment areas
+* Improve algorithm efficiency so we can scale better to larger datasets / make finer images

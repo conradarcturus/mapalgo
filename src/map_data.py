@@ -35,9 +35,9 @@ def _loadAllRegionsBounds():
     data_file = open('data/region_coordinates.csv', 'rb')
     data_regions = np.loadtxt(
         data_file, 
-        delimiter=', ',
+        delimiter=',',
         dtype={'names': ('continent', 'region_name', 'ymin', 'ymax', 'xmin', 'xmax', 'area'),
-             'formats': ('S10', 'S16', 'i', 'i', 'i', 'i', 'i')},
+             'formats': ('S10', 'S17', 'i', 'i', 'i', 'i', 'i')},
         skiprows=1,
     )
     data_file.close()
