@@ -71,6 +71,7 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 2023-06-04
 * Consolidated the mountain range division work-in-progress codes into the python class `src\map_partition` and started a new notebook to explore new algorithms
 * Changed the existing map_partition functions into an object-based class because of all of the repeat code (and the terribly named variable `params`)
+* Added some exploratory code to the nodebook to attempt to partition based on large valleys, included some analysis but it needs more work
 
 
 ### Planned work

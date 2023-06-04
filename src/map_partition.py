@@ -437,6 +437,26 @@ class LocalePartition():
                   ))
 
         return locales_adjacency_list
+    
+    # Function to split a part of a division (group of locales) to a new division
+    def getNodesDivisionAfterPartition(self, nodes_division, dividing_locale, locales_adjacency_list, nodes_value):
+        exploring_locales = [dividing_locale];
+        extremum = dividing_locale;
+
+        # Assign all recursive neighbors of dividing_locale to its group
+        while len(exploring_locales) > 0:
+            new_locale = exploring_locales.pop()
+            if(nodes_value[new_locale] > nodes_value[extremum]):
+                extremum = new_locale # Determine the final maximal point of the new division
+            for neighbor_locale in locales_adjacency_list[new_locale]:
+                if nodes_division[neighbor_locale] != dividing_locale:
+                    nodes_division[neighbor_locale] = dividing_locale
+                    exploring_locales.append(neighbor_locale)
+
+        # Reassign that whole new division to the maximum point in that division
+        nodes_division[nodes_division == dividing_locale] = extremum
+
+        return nodes_division
 
     def drawDivisionsAcrossSeaLevel(self, print_filenames=False, display_images=False, final_analysis_filename=False):
         interfaces_to_split = ['LSL'] if self.flow_direction == 'up' else ['LSS', 'SSL']
@@ -450,26 +470,6 @@ class LocalePartition():
         node_global_extremum_index = np.argsort(nodes_value)[0] # This is the parent locale to all others
         nodes_division = np.full(self.n_nodes, node_global_extremum_index) # Start with everything being unified under this peak
         n_locales = len(locales_adjacency_list)
-
-        # Function to split a part of a division to a new division
-        def reassignDivisionsOfRecursiveNeighbors(nodes_division, dividing_locale, locales_adjacency_list, nodes_value):
-            exploring_locales = [dividing_locale];
-            extremum = dividing_locale;
-
-            # Assign all recursive neighbors of dividing_locale to its group
-            while len(exploring_locales) > 0:
-                new_locale = exploring_locales.pop()
-                if(nodes_value[new_locale] > nodes_value[extremum]):
-                    extremum = new_locale # Determine the final maximal point of the new division
-                for neighbor_locale in locales_adjacency_list[new_locale]:
-                    if nodes_division[neighbor_locale] != dividing_locale:
-                        nodes_division[neighbor_locale] = dividing_locale
-                        exploring_locales.append(neighbor_locale)
-
-            # Reassign that whole new division to the maximum point in that division
-            nodes_division[nodes_division == dividing_locale] = extremum
-
-            return nodes_division
 
         # Iterate over the merge
         for merge in self.merges:
@@ -487,8 +487,8 @@ class LocalePartition():
 
             # Compute the new groups (using stand-in values for the highest extremum)
             # Note: We are doing double work since we don't know which side the overall extremum is on
-            nodes_division = reassignDivisionsOfRecursiveNeighbors(nodes_division, m1, locales_adjacency_list, nodes_value)
-            nodes_division = reassignDivisionsOfRecursiveNeighbors(nodes_division, m2, locales_adjacency_list, nodes_value)
+            nodes_division = self.getNodesDivisionAfterPartition(nodes_division, m1, locales_adjacency_list, nodes_value)
+            nodes_division = self.getNodesDivisionAfterPartition(nodes_division, m2, locales_adjacency_list, nodes_value)
 
         # Finally expand the division color to all nodes
         for locale_index in np.arange(len(nodes_locale)):
