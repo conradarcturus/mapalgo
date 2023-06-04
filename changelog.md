@@ -1,6 +1,6 @@
 ## Changelog ##
 
-### Phase 1, Setting up the maps, images, basic transforms ###
+### Setting up the maps, images, basic transforms ###
 
 Examples in notebook `01_Initial_Loading_Examples.ipynb`
 
@@ -21,8 +21,9 @@ Examples in notebook `01_Initial_Loading_Examples.ipynb`
 * Added hillshade algorithm & file for similar transforms, `map_transforms`.
 * Added naturalish colormap option to images
 
-### Phase 2, Algorithms to determine peaks, mountain ranges ###
+### Algorithms to determine peaks, mountain ranges ###
 
+#### Mountains
 Examples in notebook `02_Mountains.ipynb`
 
 2022-10-13
@@ -35,6 +36,7 @@ Examples in notebook `02_Mountains.ipynb`
    * Also ran the mountain/basin algorithm on populations but the data is too sparse right now for it to be really
      meaningful until we smooth it out or merge "mountains" aka cities.
      
+#### Mountain Ranges & Watersheds
 Examples in notebook `03_Mountain_Ranges.ipynb`
 
 2022-10-17
@@ -63,6 +65,13 @@ Examples in notebook `03_Mountain_Ranges.ipynb`
 * Re-generated all of the images, removing the locale borders (since tbh it was too much noise on the large images).
 * Updated local python libraries, fixed a few incompatible code issues.
 
+#### Splitting Locales
+Examples in notebook `04_Splitting_Locales.ipynb`
+
+2023-06-04
+* Consolidated the mountain range division work-in-progress codes into the python class `src\map_partition` and started a new notebook to explore new algorithms
+
+
 Planned work
 * Iterate on different group algorithms
    * Splitting at different thresholds
@@ -72,3 +81,6 @@ Planned work
    * Rivers with color & width corresponding to flow down it
 * Try the algorithms on population data and see urban catchment areas
 * Improve algorithm efficiency so we can scale better to larger datasets / make finer images
+* Clean up data
+  * Lakes often have the same elevation and don't work well in the algorithms
+  * Potentially 
