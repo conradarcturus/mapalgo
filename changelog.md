@@ -73,6 +73,8 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 * Changed the existing map_partition functions into an object-based class because of all of the repeat code (and the terribly named variable `params`)
 * Added some exploratory code to the nodebook to attempt to partition based on large valleys, included some analysis but it needs more work
 
+2023-06-06
+* Tried out some code to visualize the ruggedness of terrain -- may be useful for determining true mountain ranges versus plateaus
 
 ### Planned work
 * Iterate on different group algorithms
@@ -85,4 +87,3 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 * Improve algorithm efficiency so we can scale better to larger datasets / make finer images
 * Clean up data
   * Lakes often have the same elevation and don't work well in the algorithms
-  * Potentially 
