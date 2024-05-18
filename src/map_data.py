@@ -11,7 +11,9 @@ def loadBaseMap(dataset, minutes_per_node, image_folder):
     
     # Load Data
     data_file = open('data/{}_world_{}min.npz'.format(dataset, minutes_per_node), 'rb')
-    data_2d = np.load(data_file)['data_matrix']
+    data_2d = np.load(data_file)
+    if not isinstance(data_2d, np.ndarray):
+        data_2d = data_2d['data_matrix']
     data_file.close()
 
     # Set attributes for the map data

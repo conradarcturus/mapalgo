@@ -4,6 +4,7 @@ This data comes from third parties and has been transformed to work in the code 
 **Kinds of Data**
 * POP - Population
 * TBI - Elevation of Bedrock
+* PSL - ??? we will find out
 
 Only the coarse 5/10/60 minute resolution files are updated to github since the other files are 
 quite large and the data may have limited use agreements.

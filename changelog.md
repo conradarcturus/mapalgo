@@ -76,6 +76,12 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 2023-06-06
 * Tried out some code to visualize the ruggedness of terrain -- may be useful for determining true mountain ranges versus plateaus
 
+#### Looking at other Data
+
+2024-05-17
+* Getting back into the groove of this work (A year later?!)
+* Added support for Population maps -- but will need to iterate on the underlying data since the zeros don't cooperate well
+
 ### Planned work
 * Iterate on different group algorithms
    * Splitting at different thresholds
@@ -84,6 +90,7 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 * Try different ways to visualize 
    * Rivers with color & width corresponding to flow down it
 * Try the algorithms on population data and see urban catchment areas
+  * Clean up population data to make it work better
 * Improve algorithm efficiency so we can scale better to larger datasets / make finer images
 * Clean up data
   * Lakes often have the same elevation and don't work well in the algorithms

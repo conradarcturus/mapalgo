@@ -32,24 +32,48 @@ class LocalePartition():
     
     # These provide a series of names so we can run the same code to compute both mountain ranges and water sheds
     def getDirectionSpecificLabels(self):
-        if self.flow_direction == 'up':
-            return {
-                'direction_adjective': 'high',
-                'extremum': 'peak',
-                'path': 'ridge',
-                'locale': 'mountain',
-                'division': 'mountain_range',
-                'sealevel_division': 'island',
-            }
-        else: # self.flow_direction == 'down'
-            return {
-                'direction_adjective': 'low',
-                'extremum': 'sink',
-                'path': 'river',
-                'locale': 'basin',
-                'division': 'watershed',
-                'sealevel_division': 'drainage_basin',
-            }
+        if self.dataset in ['TBI', 'PSL']:
+            if self.flow_direction == 'up':
+                return {
+                    'value': 'elevation',
+                    'direction_adjective': 'high',
+                    'extremum': 'peak',
+                    'path': 'ridge',
+                    'locale': 'mountain',
+                    'division': 'mountain_range',
+                    'sealevel_division': 'island',
+                }
+            else: # self.flow_direction == 'down'
+                return {
+                    'value': 'depth',
+                    'direction_adjective': 'low',
+                    'extremum': 'sink',
+                    'path': 'river',
+                    'locale': 'basin',
+                    'division': 'watershed',
+                    'sealevel_division': 'drainage_basin',
+                }
+        else: # Population-based
+            if self.flow_direction == 'up':
+                return {
+                    'value': 'population',
+                    'direction_adjective': 'populated',
+                    'extremum': 'downtown',
+                    'path': 'urban_corridor',
+                    'locale': 'city',
+                    'division': 'urban_area',
+                    'sealevel_division': 'contiguous_urban_area',
+                }
+            else: # self.flow_direction == 'down'
+                return {
+                    'value': 'remoteness',
+                    'direction_adjective': 'deserted',
+                    'extremum': 'isolated_point',
+                    'path': 'outskirt',
+                    'locale': 'desert',
+                    'division': 'division',
+                    'sealevel_division': 'void',
+                }
 
     # Regenerate Elevation information and prepare many supporting maps
     def getImageBase(self, nodes_bg_value=None, nodes_bg_colormap='hashed', nodes_border=None):
@@ -106,6 +130,15 @@ class LocalePartition():
         
         # Display locales
         if display_and_save_image:
+            # Elevation
+            data_elevation_sqrt = maps['elevation'].getDataFlat()
+            map_image.RasterImage(maps['elevation']) \
+                .addLayer('elevation', data_elevation_sqrt, colormap='naturalish') \
+                .addLayer('hillshade', maps['hillshade'].getDataFlat(), transforms=[], combine='add', opacity=1, dissolve=1) \
+                .overrideLayerNames([self.labels['value']]) \
+                .display().save().final()
+            
+            # Locales
             self.getImageBase(
                          nodes_bg_value=maps['locale'].getDataFlat(), 
                          nodes_border = maps['locale_border'].getDataFlat()) \
