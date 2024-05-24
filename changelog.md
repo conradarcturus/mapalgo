@@ -82,6 +82,9 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 * Getting back into the groove of this work (A year later?!)
 * Added support for Population maps -- but will need to iterate on the underlying data since the zeros don't cooperate well
 
+2024-05-24
+* Added new PSL (Population + Sea Level) data
+
 ### Planned work
 * Iterate on different group algorithms
    * Splitting at different thresholds

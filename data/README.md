@@ -4,10 +4,13 @@ This data comes from third parties and has been transformed to work in the code 
 **Kinds of Data**
 * POP - Population
 * TBI - Elevation of Bedrock
-* PSL - ??? we will find out
+* PSL - Combination of Population and Elevation data
+  * Elevation is used when population is 0. Instead 0 values are replaced with elevation, particularly the vertical distance from sea level. Thereby when we use this part of the data, it will prioritize coastal areas over high elevation and deep sea.
 
 Only the coarse 5/10/60 minute resolution files are updated to github since the other files are 
 quite large and the data may have limited use agreements.
+
+TBI and related datasets come from data hosted by The Institute for Geoscience Research & Department of Spatial Sciences, Curtin University Perth, WA, Australia. You can download it fresh from https://ddfe.curtin.edu.au/models/ . Their research paper is also incldued as a pdf write-up in data/Hirt_Rexer2015_Earth2014.pdf
 
 ## Locations ##
 

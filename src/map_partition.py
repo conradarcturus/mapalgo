@@ -32,7 +32,7 @@ class LocalePartition():
     
     # These provide a series of names so we can run the same code to compute both mountain ranges and water sheds
     def getDirectionSpecificLabels(self):
-        if self.dataset in ['TBI', 'PSL']:
+        if self.dataset in ['TBI', 'RET', 'BED']:
             if self.flow_direction == 'up':
                 return {
                     'value': 'elevation',
@@ -53,7 +53,7 @@ class LocalePartition():
                     'division': 'watershed',
                     'sealevel_division': 'drainage_basin',
                 }
-        else: # Population-based
+        else: # Population-based POP or PSL
             if self.flow_direction == 'up':
                 return {
                     'value': 'population',
@@ -132,9 +132,12 @@ class LocalePartition():
         if display_and_save_image:
             # Elevation
             data_elevation_sqrt = maps['elevation'].getDataFlat()
+            data_elevation_sqrt = np.sign(data_elevation_sqrt) * (np.abs(data_elevation_sqrt) ** 0.5)
             map_image.RasterImage(maps['elevation']) \
                 .addLayer('elevation', data_elevation_sqrt, colormap='naturalish') \
-                .addLayer('hillshade', maps['hillshade'].getDataFlat(), transforms=[], combine='add', opacity=1, dissolve=1) \
+                .addLayer('sea', 1.2, nodes_selected=maps['sea'].getDataFlat(), combine='add', dissolve=.2) \
+                .addLayer('hillshade', maps['hillshade'].getDataFlat(), combine='add', opacity=1, dissolve=1) \
+                .addLayer('coast', 0.2, nodes_selected=maps['coast'].getDataFlat(), combine='multiply') \
                 .overrideLayerNames([self.labels['value']]) \
                 .display().save().final()
             
