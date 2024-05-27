@@ -85,6 +85,9 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 2024-05-24
 * Added new PSL (Population + Sea Level) data
 
+2024-05-27
+* Compress the new data, start iterating on importing new data
+
 ### Planned work
 * Iterate on different group algorithms
    * Splitting at different thresholds
