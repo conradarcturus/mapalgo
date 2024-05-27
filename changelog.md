@@ -87,6 +87,8 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 
 2024-05-27
 * Compress the new data, start iterating on importing new data
+* Travelling to new areas -- adding locale region maps so I could play around with them. Gosh I need the higher resolution elevation data
+* With that, added better utilities to generate regions based on degrees
 
 ### Planned work
 * Iterate on different group algorithms
