@@ -127,5 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-data/*_world_1min.npz
+data/*_world_1min.npz*
 .DS_Store
+img/*/*_1min_world_value.png

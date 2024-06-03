@@ -77,6 +77,7 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 * Tried out some code to visualize the ruggedness of terrain -- may be useful for determining true mountain ranges versus plateaus
 
 #### Looking at other Data
+Examples in notebook `05_Data_Cleanup.ipynb`
 
 2024-05-17
 * Getting back into the groove of this work (A year later?!)
@@ -89,6 +90,11 @@ Examples in notebook `04_Splitting_Locales.ipynb`
 * Compress the new data, start iterating on importing new data
 * Travelling to new areas -- adding locale region maps so I could play around with them. Gosh I need the higher resolution elevation data
 * With that, added better utilities to generate regions based on degrees
+
+2024-06-03
+* Moved input data processing into a different source file, `map_input_processing.py`
+* Revived the script to read in the binary elevation data from the Curtin University source
+* Re-generated the PSL data with the new PSL algorithm (previously it added up sea level + population, so it looked like places near sea level had population, inventing land bridges that don't exist in modern times.
 
 ### Planned work
 * Iterate on different group algorithms

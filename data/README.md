@@ -2,9 +2,10 @@
 This data comes from third parties and has been transformed to work in the code provided.
 
 **Kinds of Data**
-* POP - Population
-* TBI - Elevation of Bedrock
-* PSL - Combination of Population and Elevation data
+* POP - **Pop**ulation
+* TBI - **T**opography: elevation of **b**edrock and/or **i**ce
+* BED - **Bed**rock, no ice included -- the surface as if all liquid and solid water was removed
+* PSL - combination of **P**opulation and tbi elevation data (relative to **s**ea **l**evel)
   * Elevation is used when population is 0. Instead 0 values are replaced with elevation, particularly the vertical distance from sea level. Thereby when we use this part of the data, it will prioritize coastal areas over high elevation and deep sea.
 
 Only the coarse 5/10/60 minute resolution files are updated to github since the other files are 

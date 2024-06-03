@@ -164,6 +164,8 @@ class RasterImage():
         self.fig = plt.figure(figsize=(12,8))
         plt.imshow(self.nodes_colors.reshape([self.n_rows, self.n_cols, 4]))
         plt.show()
+        
+        ## TODO change axes to show global degrees rather than pixel values
         return self
     
     def final(self):
