@@ -3,7 +3,7 @@
 #
 
 import numpy as np
-from src import map_instance, map_image, map_transforms
+from src import map_instance, map_image, map_transforms, map_data
 
 def drawBasicValueMap(
     map_elevation, # type map_instance
@@ -82,10 +82,10 @@ def visualizeNewRegion(
     # Convert to coordinates
     minutes_per_degree = 60
     region_bounds = { # Convert it from degrees on a globe to it to minutes from the NW corner
-        'ymin': ( 90 - max(lats)) * minutes_per_degree // 1,
-        'ymax': ( 90 - min(lats)) * minutes_per_degree // 1,
-        'xmin': (180 - max(longs)) * minutes_per_degree // 1,
-        'xmax': (180 - min(longs)) * minutes_per_degree // 1,
+        'ymin': int(( 90 - max(lats )) * minutes_per_degree),
+        'ymax': int(( 90 - min(lats )) * minutes_per_degree),
+        'xmin': int((180 - max(longs)) * minutes_per_degree),
+        'xmax': int((180 - min(longs)) * minutes_per_degree),
     }
 
     # Printable values to add to the region_coordinates.csv

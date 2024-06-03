@@ -95,6 +95,8 @@ Examples in notebook `05_Data_Cleanup.ipynb`
 * Moved input data processing into a different source file, `map_input_processing.py`
 * Revived the script to read in the binary elevation data from the Curtin University source
 * Re-generated the PSL data with the new PSL algorithm (previously it added up sea level + population, so it looked like places near sea level had population, inventing land bridges that don't exist in modern times.
+* Re-generate regional images with the new PSL and TBI 1min datasets
+* Rename region "centaus" to "redcenter", add "eastaus"
 
 ### Planned work
 * Iterate on different group algorithms
